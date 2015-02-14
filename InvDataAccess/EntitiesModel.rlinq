@@ -1,0 +1,1463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DomainModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="2.0.0.0" name="InvEntitiesModel" namespace="InvDataAccess" showPropertiesCompartment="true" xmlns="http://www.telerik.com/ORM">
+  <orm:orm name="InvEntitiesModel" backend="mysql" xmlns:orm="http://tempuri.org/ORM">
+    <orm:namespace name="InvDataAccess" default="true">
+      <orm:class name="Ventasdetalle" uniqueId="68a03d38-9a23-4471-a536-8397fd97b1cd">
+        <orm:table name="ventasdetalles" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="aa5b84e1-c52b-4b92-9735-4a102617ba81" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_ventas_Id" property="Ventas_Id" behavior="readwrite" uniqueId="946c5013-075f-474d-981d-c55e4193b8dc" type="System.Int32">
+          <orm:column name="Ventas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_productos_Id" property="Productos_Id" behavior="readwrite" uniqueId="94c7f0eb-e486-415e-86a6-382471a7fde6" type="System.Int32">
+          <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_cantidad" property="Cantidad" behavior="readwrite" uniqueId="3ae43553-4b9c-4434-8bf9-cf1df8d5db29" type="System.Int32">
+          <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_psi" property="Psi" behavior="readwrite" uniqueId="ebeb7e00-cc79-4190-abd2-831fdd1677c6" type="System.Decimal">
+          <orm:column name="Psi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_pci" property="Pci" behavior="readwrite" uniqueId="65b4c2c9-1fd0-4f99-9af8-4274b30d29ec" type="System.Decimal">
+          <orm:column name="Pci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_tsi" property="Tsi" behavior="readwrite" uniqueId="57437a55-5fff-4595-962b-7b260975f230" type="System.Decimal">
+          <orm:column name="Tsi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_tci" property="Tci" behavior="readwrite" uniqueId="2068a6a6-cd40-415c-9713-4820cde277c7" type="System.Decimal">
+          <orm:column name="Tci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_producto" property="Producto" behavior="readwrite" uniqueId="4e01f239-2a5c-44c1-b3d8-53e5c3c06b26" type="InvDataAccess.Producto">
+          <orm:reference uniqueId="7909df7c-8bdb-41ed-9db5-b16a2dd79b6d" association-name="VentasdetalleHasProducto">
+            <orm:sharedfield name="_productos_Id" target-class="InvDataAccess.Producto" target-field="_id" />
+            <orm:constraint name="fk_VentasDetalles_Productos1" delete-action="dbdefaultrule" destination-table="productos" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_venta" property="Venta" behavior="readwrite" uniqueId="c4abf804-e1a0-4ab4-a9cc-6de20d182433" type="InvDataAccess.Venta">
+          <orm:reference uniqueId="5d4aef7b-1ddb-4945-8d72-c209b061a1be" association-name="VentasdetalleHasVenta">
+            <orm:sharedfield name="_ventas_Id" target-class="InvDataAccess.Venta" target-field="_id" />
+            <orm:constraint name="fk_VentasDetalles_Ventas1" delete-action="dbdefaultrule" destination-table="ventas" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_costos" property="Costos" behavior="readwrite" uniqueId="e8cd8460-0569-4244-8362-01b270e6d738" type="InvDataAccess.Costo">
+          <orm:collection element-class="InvDataAccess.Costo" inverse-field="_ventasdetalle" order-by="" uniqueId="d93d23a4-0bbc-4116-ace0-a740bd9fe97d" />
+        </orm:field>
+        <orm:index name="fk_VentasDetalles_Productos1_idx">
+          <orm:columnMapping>
+            <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_VentasDetalles_Ventas1_idx">
+          <orm:columnMapping>
+            <orm:column name="Ventas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Venta" uniqueId="4c921544-ab86-4657-a5cc-0ac2e702882c">
+        <orm:table name="ventas" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="d5b5af31-83fa-4f22-8a2d-e7a7fd8e5311" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_fecha" property="Fecha" behavior="readwrite" uniqueId="f14f3c7b-58b6-4480-96bf-2aadecbb5052" type="System.DateTime">
+          <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        </orm:field>
+        <orm:field name="_clientes_Id" property="Clientes_Id" behavior="readwrite" uniqueId="09be2dca-71c6-4805-b119-bd2b5da0fdb7" type="System.Int32">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_tipoDocumentos_Id" property="TipoDocumentos_Id" behavior="readwrite" uniqueId="ab6b3b3a-1e45-4105-b655-6f70ae53553a" type="System.Int32">
+          <orm:column name="TipoDocumentos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_nDoc" property="NDoc" behavior="readwrite" uniqueId="09599152-7b5a-4aaa-b0fd-e9365dc758cc" type="System.String">
+          <orm:column name="NDoc" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_pagado" property="Pagado" behavior="readwrite" uniqueId="95c07f04-b0a4-469e-bbcc-4b55c4dcb885" type="System.Int32">
+          <orm:column name="Pagado" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_ventasdetalles" property="Ventasdetalles" behavior="readwrite" uniqueId="75c4c48d-0888-4287-b218-8d111c4f1d2a" type="InvDataAccess.Ventasdetalle">
+          <orm:collection element-class="InvDataAccess.Ventasdetalle" inverse-field="_venta" order-by="" uniqueId="5d4aef7b-1ddb-4945-8d72-c209b061a1be" />
+        </orm:field>
+        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="2ac3217f-e4c4-4d6a-82b2-7c6f12799552" type="InvDataAccess.Cliente">
+          <orm:reference uniqueId="efcd4f2f-5c56-4af1-a46a-af50203daea7" association-name="VentaHasCliente">
+            <orm:sharedfield name="_clientes_Id" target-class="InvDataAccess.Cliente" target-field="_id" />
+            <orm:constraint name="fk_Ventas_Clientes1" delete-action="dbdefaultrule" destination-table="clientes" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_tipodocumento" property="Tipodocumento" behavior="readwrite" uniqueId="b5a95535-f54a-4b7c-9da5-20b6b9ecbddb" type="InvDataAccess.Tipodocumento">
+          <orm:reference uniqueId="1d62c5d6-da9e-4171-bde8-6bd07ff7ecca" association-name="VentaHasTipodocumento">
+            <orm:sharedfield name="_tipoDocumentos_Id" target-class="InvDataAccess.Tipodocumento" target-field="_id" />
+            <orm:constraint name="fk_Ventas_TipoDocumentos1" delete-action="dbdefaultrule" destination-table="tipodocumentos" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_Ventas_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_Ventas_TipoDocumentos1_idx">
+          <orm:columnMapping>
+            <orm:column name="TipoDocumentos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Usuario" uniqueId="b76c4d68-dcad-4fd0-925d-c8d9b0ddca33">
+        <orm:table name="usuarios" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="daeb6d3a-7168-420f-b7be-f6db505816f3" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_usuario1" property="Usuario1" behavior="readwrite" uniqueId="3f136b24-5570-4a6a-8541-167223f83af7" type="System.String">
+          <orm:column name="Usuario" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_clave" property="Clave" behavior="readwrite" uniqueId="9d86c3d1-4033-4267-a7e2-e16bc41fcbec" type="System.String">
+          <orm:column name="Clave" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Tipodocumento" uniqueId="af6d3fb2-0bc9-4d34-b840-965feec2d67f">
+        <orm:table name="tipodocumentos" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="387a99f5-c008-4b6f-a3e0-96afa8c50076" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_tipo" property="Tipo" behavior="readwrite" uniqueId="e7de4536-d50d-4c1f-ac4e-aa2f1a24f9d7" type="System.String">
+          <orm:column name="Tipo" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_ventas" property="Ventas" behavior="readwrite" uniqueId="2bf6ce7b-2b5b-4652-ab5d-1e8c3d9cbd7a" type="InvDataAccess.Venta">
+          <orm:collection element-class="InvDataAccess.Venta" inverse-field="_tipodocumento" order-by="" uniqueId="1d62c5d6-da9e-4171-bde8-6bd07ff7ecca" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Proveedoresdireccione" uniqueId="8c3bbdf6-5613-4a8f-998b-7cb28407a20a">
+        <orm:table name="proveedoresdirecciones" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="e3d5c55b-7b33-4ba8-bbb6-02d41bca5232" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_proveedores_Id" property="Proveedores_Id" behavior="readwrite" uniqueId="1b814f60-a4c6-4e42-949a-c932f0a7b85b" type="System.Int32">
+          <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_direccion" property="Direccion" behavior="readwrite" uniqueId="9b70c65b-cab9-4c36-a5ef-f71227f18873" type="System.String">
+          <orm:column name="Direccion" sql-type="mediumtext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_proveedore" property="Proveedore" behavior="readwrite" uniqueId="9bd61e20-dee1-48cd-8b2f-493b39d72ffa" type="InvDataAccess.Proveedore">
+          <orm:reference uniqueId="0d328858-f900-4aac-9bbd-22057284eabb" association-name="ProveedoresdireccioneHasProveedore">
+            <orm:sharedfield name="_proveedores_Id" target-class="InvDataAccess.Proveedore" target-field="_id" />
+            <orm:constraint name="fk_ProveedoresDirecciones_Proveedores1" delete-action="dbdefaultrule" destination-table="proveedores" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_ProveedoresDirecciones_Proveedores1_idx">
+          <orm:columnMapping>
+            <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Proveedorescontacto" uniqueId="76ca2ca3-9607-4ae8-a921-b237d5d822b6">
+        <orm:table name="proveedorescontactos" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="6f728c97-04c6-4e88-9cfe-d62ca88ff344" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_proveedores_Id" property="Proveedores_Id" behavior="readwrite" uniqueId="ef1034fe-adf9-450a-ab58-5c15674c0ae5" type="System.Int32">
+          <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_contacto" property="Contacto" behavior="readwrite" uniqueId="f9d0aac6-de25-407c-a3ba-a4c0f48a3b91" type="System.String">
+          <orm:column name="Contacto" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_telefono" property="Telefono" behavior="readwrite" uniqueId="adb2f560-2881-4288-a26c-675471ea13f5" type="System.String">
+          <orm:column name="Telefono" sql-type="nvarchar" nullable="false" length="9" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_ext" property="Ext" behavior="readwrite" uniqueId="da270da2-643b-4615-903f-a3465d6a3af5" type="System.String">
+          <orm:column name="Ext" sql-type="nvarchar" nullable="false" length="4" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_proveedore" property="Proveedore" behavior="readwrite" uniqueId="fe61eba2-21d9-47bb-baa1-1487b6e18b77" type="InvDataAccess.Proveedore">
+          <orm:reference uniqueId="d5289358-7abc-4029-8b49-341d76e1ba5b" association-name="ProveedorescontactoHasProveedore">
+            <orm:sharedfield name="_proveedores_Id" target-class="InvDataAccess.Proveedore" target-field="_id" />
+            <orm:constraint name="fk_ProveedoresContactos_Proveedores1" delete-action="dbdefaultrule" destination-table="proveedores" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_ProveedoresContactos_Proveedores1_idx">
+          <orm:columnMapping>
+            <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Proveedore" uniqueId="0298b792-d60a-421b-a929-cae43f568446">
+        <orm:table name="proveedores" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="2484222d-332c-48bc-8cb5-ea5eebe25e72" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_proveedor" property="Proveedor" behavior="readwrite" uniqueId="939140ae-a1d4-4edb-a15e-740e726b2905" type="System.String">
+          <orm:column name="Proveedor" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_nit" property="Nit" behavior="readwrite" uniqueId="25d6dc29-aaf2-493b-b746-9d2fbcc9d75b" type="System.String">
+          <orm:column name="Nit" sql-type="nvarchar" nullable="false" length="20" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_nrc" property="Nrc" behavior="readwrite" uniqueId="cfa44d5e-e322-446a-8fef-f9b100c702eb" type="System.String">
+          <orm:column name="Nrc" sql-type="nvarchar" nullable="false" length="45" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_proveedoresdirecciones" property="Proveedoresdirecciones" behavior="readwrite" uniqueId="4f1918b3-b55c-44a4-98fe-f823f9979fbe" type="InvDataAccess.Proveedoresdireccione">
+          <orm:collection element-class="InvDataAccess.Proveedoresdireccione" inverse-field="_proveedore" order-by="" uniqueId="0d328858-f900-4aac-9bbd-22057284eabb" />
+        </orm:field>
+        <orm:field name="_proveedorescontactos" property="Proveedorescontactos" behavior="readwrite" uniqueId="8b0f8757-2921-4e54-bad6-ec7d121160dc" type="InvDataAccess.Proveedorescontacto">
+          <orm:collection element-class="InvDataAccess.Proveedorescontacto" inverse-field="_proveedore" order-by="" uniqueId="d5289358-7abc-4029-8b49-341d76e1ba5b" />
+        </orm:field>
+        <orm:field name="_compras" property="Compras" behavior="readwrite" uniqueId="50980712-0e81-4dd7-9bd2-49f0ca8d2cbe" type="InvDataAccess.Compra">
+          <orm:collection element-class="InvDataAccess.Compra" inverse-field="_proveedore" order-by="" uniqueId="8e8d5668-86d9-48e7-b1e3-9cb3bf856918" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Producto" uniqueId="74d1b71f-fd61-4acc-8b13-8da390e78be3">
+        <orm:table name="productos" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="30f34a72-9bb9-489e-b96f-ee039b1db6d8" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_producto1" property="Producto1" behavior="readwrite" uniqueId="e5bf7a06-ad3d-4e4e-95a3-9dbe991b00a6" type="System.String">
+          <orm:column name="Producto" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_marcas_Id" property="Marcas_Id" behavior="readwrite" uniqueId="9c85fbb5-d038-43e4-8e76-f5b8697fa1da" type="System.Int32">
+          <orm:column name="Marcas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_precio" property="Precio" behavior="readwrite" uniqueId="4630a58a-088a-40fd-b5f2-caa7242a616e" type="System.Decimal">
+          <orm:column name="Precio" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_cantidad" property="Cantidad" behavior="readwrite" uniqueId="55435077-101f-4810-b520-1b17a8bd6576" type="System.Int32">
+          <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_minimo" property="Minimo" behavior="readwrite" uniqueId="f3257206-d961-409c-9add-9331843028ca" type="System.Int32">
+          <orm:column name="Minimo" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_ventasdetalles" property="Ventasdetalles" behavior="readwrite" uniqueId="b368c2ff-f091-47bb-8744-25f4a55da053" type="InvDataAccess.Ventasdetalle">
+          <orm:collection element-class="InvDataAccess.Ventasdetalle" inverse-field="_producto" order-by="" uniqueId="7909df7c-8bdb-41ed-9db5-b16a2dd79b6d" />
+        </orm:field>
+        <orm:field name="_marca" property="Marca" behavior="readwrite" uniqueId="cdde6951-06ef-43c9-a118-517be84dff1e" type="InvDataAccess.Marca">
+          <orm:reference uniqueId="b8e653a5-11d9-447e-bf1a-4d3c964f2a85" association-name="ProductoHasMarca">
+            <orm:sharedfield name="_marcas_Id" target-class="InvDataAccess.Marca" target-field="_id" />
+            <orm:constraint name="fk_Productos_Marcas" delete-action="dbdefaultrule" destination-table="marcas" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_cotizacionesdetalles" property="Cotizacionesdetalles" behavior="readwrite" uniqueId="b630d0ba-d3b5-4f0f-aa94-5be8a45ea4d9" type="InvDataAccess.Cotizacionesdetalle">
+          <orm:collection element-class="InvDataAccess.Cotizacionesdetalle" inverse-field="_producto" order-by="" uniqueId="a7e6a946-d58b-4daf-ac4a-c74ee33d7125" />
+        </orm:field>
+        <orm:field name="_comprasdetalles" property="Comprasdetalles" behavior="readwrite" uniqueId="93899ac1-4154-460f-b6b4-01dc36bb0411" type="InvDataAccess.Comprasdetalle">
+          <orm:collection element-class="InvDataAccess.Comprasdetalle" inverse-field="_producto" order-by="" uniqueId="88f0829c-3405-4d19-9901-31f5ffdf6566" />
+        </orm:field>
+        <orm:index name="fk_Productos_Marcas_idx">
+          <orm:columnMapping>
+            <orm:column name="Marcas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Marca" uniqueId="56f591c2-6b53-4485-a330-5811ca97b568">
+        <orm:table name="marcas" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="903db806-f5e9-4930-a3c8-6f0371ba9ec7" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_marca1" property="Marca1" behavior="readwrite" uniqueId="d993cd81-8ba1-4d58-b530-fffd3cbeac86" type="System.String">
+          <orm:column name="Marca" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_productos" property="Productos" behavior="readwrite" uniqueId="c0ebb2d8-73af-4d08-8c8a-a7df92c9e1ea" type="InvDataAccess.Producto">
+          <orm:collection element-class="InvDataAccess.Producto" inverse-field="_marca" order-by="" uniqueId="b8e653a5-11d9-447e-bf1a-4d3c964f2a85" />
+        </orm:field>
+      </orm:class>
+      <orm:class name="Cotizacionesdetalle" uniqueId="1726d6e2-2d45-4364-b22a-3fd334788bb6">
+        <orm:table name="cotizacionesdetalles" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="f9b59f9c-fbc3-4648-82f4-1b9a35b91f9f" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_cotizaciones_Id" property="Cotizaciones_Id" behavior="readwrite" uniqueId="b9d0895a-298b-4ec5-8ed4-c33ac664eadf" type="System.Int32">
+          <orm:column name="Cotizaciones_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_productos_Id" property="Productos_Id" behavior="readwrite" uniqueId="6ed7dcc3-2df5-4ea5-b724-161c1d5e5258" type="System.Int32">
+          <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_cantidad" property="Cantidad" behavior="readwrite" uniqueId="d3fbb368-99ba-4c66-a062-287ebb5b71c3" type="System.Int32">
+          <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_psi" property="Psi" behavior="readwrite" uniqueId="be5880a5-56e4-4d5a-b116-c3bdf0521f61" type="System.Decimal">
+          <orm:column name="Psi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_pci" property="Pci" behavior="readwrite" uniqueId="653419fa-758c-413d-b0f5-2964ccbec3ad" type="System.Decimal">
+          <orm:column name="Pci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_tsi" property="Tsi" behavior="readwrite" uniqueId="d604869b-1320-4fd7-8122-545d72697d8d" type="System.Decimal">
+          <orm:column name="Tsi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_tci" property="Tci" behavior="readwrite" uniqueId="23b4818d-6a0f-427d-96a0-a7611cf3eef4" type="System.Decimal">
+          <orm:column name="Tci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_cotizacione" property="Cotizacione" behavior="readwrite" uniqueId="9beaa14a-ec91-46e2-b736-5182fb198273" type="InvDataAccess.Cotizacione">
+          <orm:reference uniqueId="e6250845-1797-4c2a-8dcf-8ffa3a6bfcd9" association-name="CotizacionesdetalleHasCotizacione">
+            <orm:sharedfield name="_cotizaciones_Id" target-class="InvDataAccess.Cotizacione" target-field="_id" />
+            <orm:constraint name="fk_CotizacionesDetalles_Cotizaciones1" delete-action="dbdefaultrule" destination-table="cotizaciones" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_producto" property="Producto" behavior="readwrite" uniqueId="624e65e8-8a6d-496b-a3cc-0f59a703ddd9" type="InvDataAccess.Producto">
+          <orm:reference uniqueId="a7e6a946-d58b-4daf-ac4a-c74ee33d7125" association-name="CotizacionesdetalleHasProducto">
+            <orm:sharedfield name="_productos_Id" target-class="InvDataAccess.Producto" target-field="_id" />
+            <orm:constraint name="fk_CotizacionesDetalles_Productos1" delete-action="dbdefaultrule" destination-table="productos" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_CotizacionesDetalles_Cotizaciones1_idx">
+          <orm:columnMapping>
+            <orm:column name="Cotizaciones_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_CotizacionesDetalles_Productos1_idx">
+          <orm:columnMapping>
+            <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Cotizacione" uniqueId="0ccf0a26-b1b6-41d9-9031-355762268459">
+        <orm:table name="cotizaciones" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="d23063ee-e557-4f77-a5b0-f665387fe7c4" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_codigo" property="Codigo" behavior="readwrite" uniqueId="b86d406d-6f82-49fd-8a39-ba66a8babc2f" type="System.String">
+          <orm:column name="Codigo" sql-type="nvarchar" nullable="false" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_fecha" property="Fecha" behavior="readwrite" uniqueId="aebb0f49-83f6-4e97-adef-b8df8e3be032" type="System.DateTime">
+          <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        </orm:field>
+        <orm:field name="_clientes_Id" property="Clientes_Id" behavior="readwrite" uniqueId="a3c7f48b-88d7-48a9-a8a6-cdef64bd1fe8" type="System.Int32">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_cotizacionesdetalles" property="Cotizacionesdetalles" behavior="readwrite" uniqueId="80ba2c15-ff34-41db-bc65-5e664705048c" type="InvDataAccess.Cotizacionesdetalle">
+          <orm:collection element-class="InvDataAccess.Cotizacionesdetalle" inverse-field="_cotizacione" order-by="" uniqueId="e6250845-1797-4c2a-8dcf-8ffa3a6bfcd9" />
+        </orm:field>
+        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="65f4bffb-d3cc-4a89-a048-6791a961ddf5" type="InvDataAccess.Cliente">
+          <orm:reference uniqueId="19297935-dce8-411d-8c2b-64be5d99424c" association-name="CotizacioneHasCliente">
+            <orm:sharedfield name="_clientes_Id" target-class="InvDataAccess.Cliente" target-field="_id" />
+            <orm:constraint name="fk_Cotizaciones_Clientes1" delete-action="dbdefaultrule" destination-table="clientes" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_Cotizaciones_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Costo" uniqueId="ebff4f83-b09b-4ff5-8bb7-38e7349b0289">
+        <orm:table name="costos" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="40dcc9de-a7b4-4668-805f-26b1a7e4a439" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_fecha" property="Fecha" behavior="readwrite" uniqueId="3ac8e19b-0a52-4073-ba84-fd9864ec151a" type="System.DateTime">
+          <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        </orm:field>
+        <orm:field name="_ventasDetalles_Id" property="VentasDetalles_Id" behavior="readwrite" uniqueId="49d2f6b0-478b-468e-99a6-d5c7cdf03220" type="System.Int32">
+          <orm:column name="VentasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_comprasDetalles_Id" property="ComprasDetalles_Id" behavior="readwrite" uniqueId="8678390e-2588-4fd9-9bed-bcb9dc248467" type="System.Int32">
+          <orm:column name="ComprasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_comprasdetalle" property="Comprasdetalle" behavior="readwrite" uniqueId="f495ffaf-e99f-420d-9e02-576b28e05f84" type="InvDataAccess.Comprasdetalle">
+          <orm:reference uniqueId="7b93674e-1281-4577-b762-0dcb15789dbe" association-name="CostoHasComprasdetalle">
+            <orm:sharedfield name="_comprasDetalles_Id" target-class="InvDataAccess.Comprasdetalle" target-field="_id" />
+            <orm:constraint name="fk_Costos_ComprasDetalles1" delete-action="dbdefaultrule" destination-table="comprasdetalles" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_ventasdetalle" property="Ventasdetalle" behavior="readwrite" uniqueId="adac3d68-d5e8-4746-8a83-1458548f5e2a" type="InvDataAccess.Ventasdetalle">
+          <orm:reference uniqueId="d93d23a4-0bbc-4116-ace0-a740bd9fe97d" association-name="CostoHasVentasdetalle">
+            <orm:sharedfield name="_ventasDetalles_Id" target-class="InvDataAccess.Ventasdetalle" target-field="_id" />
+            <orm:constraint name="fk_Costos_VentasDetalles1" delete-action="dbdefaultrule" destination-table="ventasdetalles" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_Costos_ComprasDetalles1_idx">
+          <orm:columnMapping>
+            <orm:column name="ComprasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_Costos_VentasDetalles1_idx">
+          <orm:columnMapping>
+            <orm:column name="VentasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Comprasdetalle" uniqueId="901dd92f-273d-41d8-a40e-fdd6f079ec1c">
+        <orm:table name="comprasdetalles" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="8c7fd92d-949a-494e-980c-a87e6adcdd32" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_compras_Id" property="Compras_Id" behavior="readwrite" uniqueId="f1d3f054-4962-47f1-8fb0-d166aa1e0c91" type="System.Int32">
+          <orm:column name="Compras_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_productos_Id" property="Productos_Id" behavior="readwrite" uniqueId="03d4ab21-0ae7-4ddb-a8f8-c8537ab6d79e" type="System.Int32">
+          <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_cantidad" property="Cantidad" behavior="readwrite" uniqueId="eeb9cc9b-1b09-4c49-a30c-2968066fc2ca" type="System.Int32">
+          <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_psi" property="Psi" behavior="readwrite" uniqueId="bcd475ad-e7d0-43e6-a406-299fb2014ab0" type="System.Decimal">
+          <orm:column name="Psi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_pci" property="Pci" behavior="readwrite" uniqueId="1a640c5b-3671-404f-98c1-edc09b7527bd" type="System.Decimal">
+          <orm:column name="Pci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_tsi" property="Tsi" behavior="readwrite" uniqueId="294ce49d-d894-4816-99fa-30a8b4ef10f2" type="System.Decimal">
+          <orm:column name="Tsi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_tci" property="Tci" behavior="readwrite" uniqueId="3c6747d6-d349-4658-bdfa-4642588e32c9" type="System.Decimal">
+          <orm:column name="Tci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        </orm:field>
+        <orm:field name="_existencia" property="Existencia" behavior="readwrite" uniqueId="2d03b621-12df-4471-a47c-e435a8a66343" type="System.Int32">
+          <orm:column name="Existencia" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_costos" property="Costos" behavior="readwrite" uniqueId="cae256c8-a14c-4900-abae-659954860161" type="InvDataAccess.Costo">
+          <orm:collection element-class="InvDataAccess.Costo" inverse-field="_comprasdetalle" order-by="" uniqueId="7b93674e-1281-4577-b762-0dcb15789dbe" />
+        </orm:field>
+        <orm:field name="_compra" property="Compra" behavior="readwrite" uniqueId="7464a084-4ddb-459d-ab96-a70d4f36a04e" type="InvDataAccess.Compra">
+          <orm:reference uniqueId="1e9f9c83-2593-4f08-a3ae-1f647055fce1" association-name="ComprasdetalleHasCompra">
+            <orm:sharedfield name="_compras_Id" target-class="InvDataAccess.Compra" target-field="_id" />
+            <orm:constraint name="fk_ComprasDetalles_Compras1" delete-action="dbdefaultrule" destination-table="compras" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_producto" property="Producto" behavior="readwrite" uniqueId="eb966cc6-58e2-4433-9f70-afe0feb401e5" type="InvDataAccess.Producto">
+          <orm:reference uniqueId="88f0829c-3405-4d19-9901-31f5ffdf6566" association-name="ComprasdetalleHasProducto">
+            <orm:sharedfield name="_productos_Id" target-class="InvDataAccess.Producto" target-field="_id" />
+            <orm:constraint name="fk_ComprasDetalles_Productos1" delete-action="dbdefaultrule" destination-table="productos" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_ComprasDetalles_Compras1_idx">
+          <orm:columnMapping>
+            <orm:column name="Compras_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_ComprasDetalles_Productos1_idx">
+          <orm:columnMapping>
+            <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Compra" uniqueId="ecdd56cc-b878-4a15-b817-6126fec9e7a6">
+        <orm:table name="compras" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="e9d8d89b-24d1-4e56-abc4-c827b1cefa01" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_fecha" property="Fecha" behavior="readwrite" uniqueId="2a005645-3365-4672-a454-fcc917533794" type="System.DateTime">
+          <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        </orm:field>
+        <orm:field name="_nDoc" property="NDoc" behavior="readwrite" uniqueId="71508b1f-704c-4c12-9c4d-862dd5c26a28" type="System.String">
+          <orm:column name="NDoc" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_proveedores_Id" property="Proveedores_Id" behavior="readwrite" uniqueId="fa30f0df-b653-46a9-9405-16616ffdb0f1" type="System.Int32">
+          <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_pagado" property="Pagado" behavior="readwrite" uniqueId="e91254fb-a99b-4670-8b3b-3229dbb8e7d2" type="System.Int32">
+          <orm:column name="Pagado" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_comprasdetalles" property="Comprasdetalles" behavior="readwrite" uniqueId="94aa465d-b0b9-48dc-9a5f-8c8504f19099" type="InvDataAccess.Comprasdetalle">
+          <orm:collection element-class="InvDataAccess.Comprasdetalle" inverse-field="_compra" order-by="" uniqueId="1e9f9c83-2593-4f08-a3ae-1f647055fce1" />
+        </orm:field>
+        <orm:field name="_proveedore" property="Proveedore" behavior="readwrite" uniqueId="0f71de7f-eb27-4b31-8f2b-c6a0790968bd" type="InvDataAccess.Proveedore">
+          <orm:reference uniqueId="8e8d5668-86d9-48e7-b1e3-9cb3bf856918" association-name="CompraHasProveedore">
+            <orm:sharedfield name="_proveedores_Id" target-class="InvDataAccess.Proveedore" target-field="_id" />
+            <orm:constraint name="fk_Compras_Proveedores1" delete-action="dbdefaultrule" destination-table="proveedores" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_Compras_Proveedores1_idx">
+          <orm:columnMapping>
+            <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Clientestelefono" uniqueId="494a0abe-c398-49d9-a74d-75d6489c7a2d">
+        <orm:table name="clientestelefonos" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="3b48a144-4370-4c44-a7d0-fa90e6762f54" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_clientes_Id" property="Clientes_Id" behavior="readwrite" uniqueId="b680278a-0fc8-4b47-ba33-bf75a98ebe6f" type="System.Int32">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_telefono" property="Telefono" behavior="readwrite" uniqueId="7ebcbd2f-c649-4548-b68e-5ab0f65d7240" type="System.String">
+          <orm:column name="Telefono" sql-type="nvarchar" nullable="false" length="9" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_ext" property="Ext" behavior="readwrite" uniqueId="dfe57094-e46a-4efb-8fdd-5fa46e55fbd7" type="System.String">
+          <orm:column name="Ext" sql-type="nvarchar" nullable="false" length="4" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="37599160-4d3d-47ad-97b1-25304985d015" type="InvDataAccess.Cliente">
+          <orm:reference uniqueId="85dd19ea-0786-4138-9e67-b31f46b247ec" association-name="ClientestelefonoHasCliente">
+            <orm:sharedfield name="_clientes_Id" target-class="InvDataAccess.Cliente" target-field="_id" />
+            <orm:constraint name="fk_ClientesTelefonos_Clientes1" delete-action="dbdefaultrule" destination-table="clientes" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_ClientesTelefonos_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Clientesdireccione" uniqueId="3b3977d5-e1c7-466e-92cb-3c060cbc59a4">
+        <orm:table name="clientesdirecciones" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="2a9ef757-3857-443b-b47f-d2e7a45a1c11" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_clientes_Id" property="Clientes_Id" behavior="readwrite" uniqueId="d99cb864-98c3-44a8-ac34-b6e5e8b0f446" type="System.Int32">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_direccion" property="Direccion" behavior="readwrite" uniqueId="49673eaf-7fad-4d19-9b37-7fe9d0544bf2" type="System.String">
+          <orm:column name="Direccion" sql-type="mediumtext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_cliente" property="Cliente" behavior="readwrite" uniqueId="d482044a-2f7d-4810-8cd2-62f9a5480bce" type="InvDataAccess.Cliente">
+          <orm:reference uniqueId="849d3416-95ba-45ac-9a2f-0aac07a260b9" association-name="ClientesdireccioneHasCliente">
+            <orm:sharedfield name="_clientes_Id" target-class="InvDataAccess.Cliente" target-field="_id" />
+            <orm:constraint name="fk_ClientesDirecciones_Clientes1" delete-action="dbdefaultrule" destination-table="clientes" />
+          </orm:reference>
+        </orm:field>
+        <orm:index name="fk_ClientesDirecciones_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+      </orm:class>
+      <orm:class name="Cliente" uniqueId="39c20a4e-aa8f-4258-b673-9dcbfaf07700">
+        <orm:table name="clientes" />
+        <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="2c16d5d7-4383-424b-8769-c14fee27e78b" type="System.Int32">
+          <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_cliente1" property="Cliente1" behavior="readwrite" uniqueId="b3e9ff4f-16b0-437a-9d24-7ceacdff0e06" type="System.String">
+          <orm:column name="Cliente" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_nit" property="Nit" behavior="readwrite" uniqueId="024c1281-ac69-48db-93bf-f807875eed17" type="System.String">
+          <orm:column name="Nit" sql-type="nvarchar" nullable="false" length="20" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_nrc" property="Nrc" behavior="readwrite" uniqueId="43e18954-4d6e-457a-bf16-393eca4ba93b" type="System.String">
+          <orm:column name="Nrc" sql-type="nvarchar" nullable="false" length="20" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_empresa" property="Empresa" behavior="readwrite" uniqueId="0426fe42-41b9-4212-ac5c-5d3cd8abe19e" type="System.Int32">
+          <orm:column name="Empresa" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_ventas" property="Ventas" behavior="readwrite" uniqueId="8def9a3d-535a-4eee-8f25-8fa3653c4b31" type="InvDataAccess.Venta">
+          <orm:collection element-class="InvDataAccess.Venta" inverse-field="_cliente" order-by="" uniqueId="efcd4f2f-5c56-4af1-a46a-af50203daea7" />
+        </orm:field>
+        <orm:field name="_cotizaciones" property="Cotizaciones" behavior="readwrite" uniqueId="e111447f-db76-4bde-922c-bafce88eb392" type="InvDataAccess.Cotizacione">
+          <orm:collection element-class="InvDataAccess.Cotizacione" inverse-field="_cliente" order-by="" uniqueId="19297935-dce8-411d-8c2b-64be5d99424c" />
+        </orm:field>
+        <orm:field name="_clientestelefonos" property="Clientestelefonos" behavior="readwrite" uniqueId="4828a6e8-7c80-4f85-9961-57e053a564f1" type="InvDataAccess.Clientestelefono">
+          <orm:collection element-class="InvDataAccess.Clientestelefono" inverse-field="_cliente" order-by="" uniqueId="85dd19ea-0786-4138-9e67-b31f46b247ec" />
+        </orm:field>
+        <orm:field name="_clientesdirecciones" property="Clientesdirecciones" behavior="readwrite" uniqueId="fd9dd41d-828c-4e19-8372-69a3de5c13bf" type="InvDataAccess.Clientesdireccione">
+          <orm:collection element-class="InvDataAccess.Clientesdireccione" inverse-field="_cliente" order-by="" uniqueId="849d3416-95ba-45ac-9a2f-0aac07a260b9" />
+        </orm:field>
+      </orm:class>
+    </orm:namespace>
+    <orm:schema schema="">
+      <orm:table name="ventasdetalles">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Ventas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Psi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Pci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Tsi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Tci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:index name="fk_VentasDetalles_Productos1_idx">
+          <orm:columnMapping>
+            <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_VentasDetalles_Ventas1_idx">
+          <orm:columnMapping>
+            <orm:column name="Ventas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_VentasDetalles_Productos1" delete-action="dbdefaultrule" destination-table="productos">
+          <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="fk_VentasDetalles_Ventas1" delete-action="dbdefaultrule" destination-table="ventas">
+          <orm:column name="Ventas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="ventas">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="TipoDocumentos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="NDoc" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Pagado" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        <orm:index name="fk_Ventas_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_Ventas_TipoDocumentos1_idx">
+          <orm:columnMapping>
+            <orm:column name="TipoDocumentos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_Ventas_Clientes1" delete-action="dbdefaultrule" destination-table="clientes">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="fk_Ventas_TipoDocumentos1" delete-action="dbdefaultrule" destination-table="tipodocumentos">
+          <orm:column name="TipoDocumentos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="usuarios">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Usuario" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Clave" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="tipodocumentos">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Tipo" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="proveedoresdirecciones">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Direccion" sql-type="mediumtext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:index name="fk_ProveedoresDirecciones_Proveedores1_idx">
+          <orm:columnMapping>
+            <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_ProveedoresDirecciones_Proveedores1" delete-action="dbdefaultrule" destination-table="proveedores">
+          <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="proveedorescontactos">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Contacto" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Telefono" sql-type="nvarchar" nullable="false" length="9" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Ext" sql-type="nvarchar" nullable="false" length="4" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:index name="fk_ProveedoresContactos_Proveedores1_idx">
+          <orm:columnMapping>
+            <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_ProveedoresContactos_Proveedores1" delete-action="dbdefaultrule" destination-table="proveedores">
+          <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="proveedores">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Proveedor" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Nit" sql-type="nvarchar" nullable="false" length="20" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Nrc" sql-type="nvarchar" nullable="false" length="45" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="productos">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Producto" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Marcas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Precio" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        <orm:column name="Minimo" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        <orm:index name="fk_Productos_Marcas_idx">
+          <orm:columnMapping>
+            <orm:column name="Marcas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_Productos_Marcas" delete-action="dbdefaultrule" destination-table="marcas">
+          <orm:column name="Marcas_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="marcas">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Marca" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+      </orm:table>
+      <orm:table name="cotizacionesdetalles">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Cotizaciones_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Psi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Pci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Tsi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Tci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:index name="fk_CotizacionesDetalles_Cotizaciones1_idx">
+          <orm:columnMapping>
+            <orm:column name="Cotizaciones_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_CotizacionesDetalles_Productos1_idx">
+          <orm:columnMapping>
+            <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_CotizacionesDetalles_Cotizaciones1" delete-action="dbdefaultrule" destination-table="cotizaciones">
+          <orm:column name="Cotizaciones_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="fk_CotizacionesDetalles_Productos1" delete-action="dbdefaultrule" destination-table="productos">
+          <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="cotizaciones">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Codigo" sql-type="nvarchar" nullable="false" length="50" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:index name="fk_Cotizaciones_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_Cotizaciones_Clientes1" delete-action="dbdefaultrule" destination-table="clientes">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="costos">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        <orm:column name="VentasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="ComprasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:index name="fk_Costos_ComprasDetalles1_idx">
+          <orm:columnMapping>
+            <orm:column name="ComprasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_Costos_VentasDetalles1_idx">
+          <orm:columnMapping>
+            <orm:column name="VentasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_Costos_ComprasDetalles1" delete-action="dbdefaultrule" destination-table="comprasdetalles">
+          <orm:column name="ComprasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="fk_Costos_VentasDetalles1" delete-action="dbdefaultrule" destination-table="ventasdetalles">
+          <orm:column name="VentasDetalles_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="comprasdetalles">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Compras_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Cantidad" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Psi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Pci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Tsi" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Tci" sql-type="decimal" nullable="false" length="9" scale="2" has-default-value="true" ado-type="Decimal" />
+        <orm:column name="Existencia" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        <orm:index name="fk_ComprasDetalles_Compras1_idx">
+          <orm:columnMapping>
+            <orm:column name="Compras_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:index name="fk_ComprasDetalles_Productos1_idx">
+          <orm:columnMapping>
+            <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_ComprasDetalles_Compras1" delete-action="dbdefaultrule" destination-table="compras">
+          <orm:column name="Compras_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="fk_ComprasDetalles_Productos1" delete-action="dbdefaultrule" destination-table="productos">
+          <orm:column name="Productos_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="compras">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Fecha" sql-type="date" nullable="false" length="0" scale="0" ado-type="Date" />
+        <orm:column name="NDoc" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Pagado" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+        <orm:index name="fk_Compras_Proveedores1_idx">
+          <orm:columnMapping>
+            <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_Compras_Proveedores1" delete-action="dbdefaultrule" destination-table="proveedores">
+          <orm:column name="Proveedores_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="clientestelefonos">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Telefono" sql-type="nvarchar" nullable="false" length="9" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Ext" sql-type="nvarchar" nullable="false" length="4" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:index name="fk_ClientesTelefonos_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_ClientesTelefonos_Clientes1" delete-action="dbdefaultrule" destination-table="clientes">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="clientesdirecciones">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="Direccion" sql-type="mediumtext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:index name="fk_ClientesDirecciones_Clientes1_idx">
+          <orm:columnMapping>
+            <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+          </orm:columnMapping>
+        </orm:index>
+        <orm:constraint name="fk_ClientesDirecciones_Clientes1" delete-action="dbdefaultrule" destination-table="clientes">
+          <orm:column name="Clientes_Id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="clientes">
+        <orm:column name="Id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="Cliente" sql-type="nvarchar" nullable="false" length="45" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Nit" sql-type="nvarchar" nullable="false" length="20" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Nrc" sql-type="nvarchar" nullable="false" length="20" scale="0" has-default-value="true" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="Empresa" sql-type="integer" nullable="false" length="0" scale="0" has-default-value="true" ado-type="Int32" />
+      </orm:table>
+    </orm:schema>
+    <orm:relational-naming-settings>
+      <orm:source-strategy>Property</orm:source-strategy>
+      <orm:remove-camel-case>False</orm:remove-camel-case>
+    </orm:relational-naming-settings>
+  </orm:orm>
+  <ModelSettings xmlns="">
+    <AppConfigConnectionPropertyName>InvdbConnection</AppConfigConnectionPropertyName>
+    <AppConfigConnectionString>server=localhost;user id=root;password=mjsmjs;persistsecurityinfo=True;database=invdb</AppConfigConnectionString>
+    <InitialCatalog>invdb</InitialCatalog>
+    <NamingSettings>
+      <ClassRules>
+        <CaseMode>PascalCase</CaseMode>
+        <PluralizationMode>Singularize</PluralizationMode>
+      </ClassRules>
+      <FieldRules>
+        <AddPrefix>_</AddPrefix>
+        <CaseMode>CamelCase</CaseMode>
+      </FieldRules>
+      <PropertyRules>
+        <CaseMode>PascalCase</CaseMode>
+      </PropertyRules>
+      <NavigationPropertyRules />
+    </NamingSettings>
+    <CodeGenerationSettings>
+      <MappingDefinitionType>Xml</MappingDefinitionType>
+    </CodeGenerationSettings>
+    <SchemaUpdateSettings />
+    <BackendConfigurationSettings>
+      <BackendConfiguration>
+        <Backend>MySql</Backend>
+        <ProviderName>MySql.Data.MySqlClient</ProviderName>
+      </BackendConfiguration>
+    </BackendConfigurationSettings>
+  </ModelSettings>
+  <Types>
+    <DomainClass Id="68a03d38-9a23-4471-a536-8397fd97b1cd" name="Ventasdetalle" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="aa5b84e1-c52b-4b92-9735-4a102617ba81" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="3ae43553-4b9c-4434-8bf9-cf1df8d5db29" name="Cantidad" type="Int32" label="Cantidad : Int32" kind="Persistent" fieldName="_cantidad" />
+      <Property Id="65b4c2c9-1fd0-4f99-9af8-4274b30d29ec" name="Pci" type="Decimal" label="Pci : Decimal" kind="Persistent" fieldName="_pci" />
+      <Property Id="94c7f0eb-e486-415e-86a6-382471a7fde6" name="Productos_Id" type="Int32" label="Productos_Id : Int32" kind="Persistent" fieldName="_productos_Id" />
+      <Property Id="ebeb7e00-cc79-4190-abd2-831fdd1677c6" name="Psi" type="Decimal" label="Psi : Decimal" kind="Persistent" fieldName="_psi" />
+      <Property Id="2068a6a6-cd40-415c-9713-4820cde277c7" name="Tci" type="Decimal" label="Tci : Decimal" kind="Persistent" fieldName="_tci" />
+      <Property Id="57437a55-5fff-4595-962b-7b260975f230" name="Tsi" type="Decimal" label="Tsi : Decimal" kind="Persistent" fieldName="_tsi" />
+      <Property Id="946c5013-075f-474d-981d-c55e4193b8dc" name="Ventas_Id" type="Int32" label="Ventas_Id : Int32" kind="Persistent" fieldName="_ventas_Id" />
+      <AssociationTargets>
+        <Association Id="7909df7c-8bdb-41ed-9db5-b16a2dd79b6d" SourceMultiplicity="One" name="VentasdetalleHasProducto">
+          <DomainClassMoniker name="/InvEntitiesModel/Producto" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="031bbce2-a871-41c1-a676-8d5710dbdee7">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Producto/Ventasdetalles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="6a4d2742-edcc-4988-ba2e-df4eef363d8b">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Ventasdetalle/Producto" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="5d4aef7b-1ddb-4945-8d72-c209b061a1be" SourceMultiplicity="One" name="VentasdetalleHasVenta">
+          <DomainClassMoniker name="/InvEntitiesModel/Venta" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="fed3de29-85b5-4fee-a44f-91f5f5cd1014">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Venta/Ventasdetalles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="bcb8777b-1ece-4b4c-a559-9876f904a6e8">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Ventasdetalle/Venta" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="efd93cbc-2866-4c48-90ed-ce924ad41116">
+          <NavigationalProperty Id="4e01f239-2a5c-44c1-b3d8-53e5c3c06b26" name="Producto" type="Producto" label="Producto : Producto" nullable="true" kind="Persistent" fieldName="_producto" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="80be0f45-d902-4ea0-98c8-632d8098d1df">
+          <NavigationalProperty Id="c4abf804-e1a0-4ab4-a9cc-6de20d182433" name="Venta" type="Venta" label="Venta : Venta" nullable="true" kind="Persistent" fieldName="_venta" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c02bcb62-3e03-4939-bb93-c85df69cd762">
+          <NavigationalProperty Id="e8cd8460-0569-4244-8362-01b270e6d738" name="Costos" type="IList&lt;Costo&gt;" label="Costos : IList&lt;Costo&gt;" nullable="true" kind="Persistent" fieldName="_costos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="4c921544-ab86-4657-a5cc-0ac2e702882c" name="Venta" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="d5b5af31-83fa-4f22-8a2d-e7a7fd8e5311" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="09be2dca-71c6-4805-b119-bd2b5da0fdb7" name="Clientes_Id" type="Int32" label="Clientes_Id : Int32" kind="Persistent" fieldName="_clientes_Id" />
+      <Property Id="f14f3c7b-58b6-4480-96bf-2aadecbb5052" name="Fecha" type="DateTime" label="Fecha : DateTime" kind="Persistent" fieldName="_fecha" />
+      <Property Id="09599152-7b5a-4aaa-b0fd-e9365dc758cc" name="NDoc" label="NDoc : String" kind="Persistent" fieldName="_nDoc" />
+      <Property Id="95c07f04-b0a4-469e-bbcc-4b55c4dcb885" name="Pagado" type="Int32" label="Pagado : Int32" kind="Persistent" fieldName="_pagado" />
+      <Property Id="ab6b3b3a-1e45-4105-b655-6f70ae53553a" name="TipoDocumentos_Id" type="Int32" label="TipoDocumentos_Id : Int32" kind="Persistent" fieldName="_tipoDocumentos_Id" />
+      <AssociationTargets>
+        <Association Id="efcd4f2f-5c56-4af1-a46a-af50203daea7" SourceMultiplicity="One" name="VentaHasCliente">
+          <DomainClassMoniker name="/InvEntitiesModel/Cliente" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="03400757-1e3c-4eb8-9327-4b1f3c77949e">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cliente/Ventas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="d9f3cf4e-b97c-4c00-9cec-c98d6b5d2836">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Venta/Cliente" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="1d62c5d6-da9e-4171-bde8-6bd07ff7ecca" SourceMultiplicity="One" name="VentaHasTipodocumento">
+          <DomainClassMoniker name="/InvEntitiesModel/Tipodocumento" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="47d11059-3623-4bf1-9994-bb60e5263066">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Tipodocumento/Ventas" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="d077f1be-d9b1-46d8-bb12-2c3f96e35641">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Venta/Tipodocumento" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="8f126bba-fa56-439c-b0cb-167b9c2cd068">
+          <NavigationalProperty Id="75c4c48d-0888-4287-b218-8d111c4f1d2a" name="Ventasdetalles" type="IList&lt;Ventasdetalle&gt;" label="Ventasdetalles : IList&lt;Ventasdetalle&gt;" nullable="true" kind="Persistent" fieldName="_ventasdetalles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c56e1a25-e53c-450d-934b-bc952e2d4239">
+          <NavigationalProperty Id="2ac3217f-e4c4-4d6a-82b2-7c6f12799552" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="da329046-f54f-4d84-bf82-bbae27ab0a18">
+          <NavigationalProperty Id="b5a95535-f54a-4b7c-9da5-20b6b9ecbddb" name="Tipodocumento" type="Tipodocumento" label="Tipodocumento : Tipodocumento" nullable="true" kind="Persistent" fieldName="_tipodocumento" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="b76c4d68-dcad-4fd0-925d-c8d9b0ddca33" name="Usuario" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="daeb6d3a-7168-420f-b7be-f6db505816f3" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="9d86c3d1-4033-4267-a7e2-e16bc41fcbec" name="Clave" label="Clave : String" kind="Persistent" fieldName="_clave" />
+      <Property Id="3f136b24-5570-4a6a-8541-167223f83af7" name="Usuario1" label="Usuario1 : String" kind="Persistent" fieldName="_usuario1" />
+    </DomainClass>
+    <DomainClass Id="af6d3fb2-0bc9-4d34-b840-965feec2d67f" name="Tipodocumento" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="387a99f5-c008-4b6f-a3e0-96afa8c50076" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="e7de4536-d50d-4c1f-ac4e-aa2f1a24f9d7" name="Tipo" label="Tipo : String" kind="Persistent" fieldName="_tipo" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="8e03f8df-7941-49da-a2ce-84e10cf1bbc7">
+          <NavigationalProperty Id="2bf6ce7b-2b5b-4652-ab5d-1e8c3d9cbd7a" name="Ventas" type="IList&lt;Venta&gt;" label="Ventas : IList&lt;Venta&gt;" nullable="true" kind="Persistent" fieldName="_ventas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="8c3bbdf6-5613-4a8f-998b-7cb28407a20a" name="Proveedoresdireccione" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="e3d5c55b-7b33-4ba8-bbb6-02d41bca5232" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="9b70c65b-cab9-4c36-a5ef-f71227f18873" name="Direccion" label="Direccion : String" kind="Persistent" fieldName="_direccion" />
+      <Property Id="1b814f60-a4c6-4e42-949a-c932f0a7b85b" name="Proveedores_Id" type="Int32" label="Proveedores_Id : Int32" kind="Persistent" fieldName="_proveedores_Id" />
+      <AssociationTargets>
+        <Association Id="0d328858-f900-4aac-9bbd-22057284eabb" SourceMultiplicity="One" name="ProveedoresdireccioneHasProveedore">
+          <DomainClassMoniker name="/InvEntitiesModel/Proveedore" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="85dabf46-29c8-43e7-9e1f-0d9b9fa25432">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Proveedore/Proveedoresdirecciones" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="63320954-7151-4738-9054-95db92be41a5">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Proveedoresdireccione/Proveedore" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="e0c25a78-0831-4278-840a-e864e28d83c9">
+          <NavigationalProperty Id="9bd61e20-dee1-48cd-8b2f-493b39d72ffa" name="Proveedore" type="Proveedore" label="Proveedore : Proveedore" nullable="true" kind="Persistent" fieldName="_proveedore" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="76ca2ca3-9607-4ae8-a921-b237d5d822b6" name="Proveedorescontacto" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="6f728c97-04c6-4e88-9cfe-d62ca88ff344" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="f9d0aac6-de25-407c-a3ba-a4c0f48a3b91" name="Contacto" label="Contacto : String" kind="Persistent" fieldName="_contacto" />
+      <Property Id="da270da2-643b-4615-903f-a3465d6a3af5" name="Ext" label="Ext : String" kind="Persistent" fieldName="_ext" />
+      <Property Id="ef1034fe-adf9-450a-ab58-5c15674c0ae5" name="Proveedores_Id" type="Int32" label="Proveedores_Id : Int32" kind="Persistent" fieldName="_proveedores_Id" />
+      <Property Id="adb2f560-2881-4288-a26c-675471ea13f5" name="Telefono" label="Telefono : String" kind="Persistent" fieldName="_telefono" />
+      <AssociationTargets>
+        <Association Id="d5289358-7abc-4029-8b49-341d76e1ba5b" SourceMultiplicity="One" name="ProveedorescontactoHasProveedore">
+          <DomainClassMoniker name="/InvEntitiesModel/Proveedore" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="d35414c1-88c0-452c-a034-190b3f6bc0f0">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Proveedore/Proveedorescontactos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="4c3909f5-e07e-4a3e-a019-67460f503808">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Proveedorescontacto/Proveedore" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="550dc5c8-cbf9-4cfc-a545-3da1a4e4e974">
+          <NavigationalProperty Id="fe61eba2-21d9-47bb-baa1-1487b6e18b77" name="Proveedore" type="Proveedore" label="Proveedore : Proveedore" nullable="true" kind="Persistent" fieldName="_proveedore" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="0298b792-d60a-421b-a929-cae43f568446" name="Proveedore" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="2484222d-332c-48bc-8cb5-ea5eebe25e72" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="25d6dc29-aaf2-493b-b746-9d2fbcc9d75b" name="Nit" label="Nit : String" kind="Persistent" fieldName="_nit" />
+      <Property Id="cfa44d5e-e322-446a-8fef-f9b100c702eb" name="Nrc" label="Nrc : String" kind="Persistent" fieldName="_nrc" />
+      <Property Id="939140ae-a1d4-4edb-a15e-740e726b2905" name="Proveedor" label="Proveedor : String" kind="Persistent" fieldName="_proveedor" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="b08a72e4-391f-4f62-90ab-328042879c4f">
+          <NavigationalProperty Id="4f1918b3-b55c-44a4-98fe-f823f9979fbe" name="Proveedoresdirecciones" type="IList&lt;Proveedoresdireccione&gt;" label="Proveedoresdirecciones : IList&lt;Proveedoresdireccione&gt;" nullable="true" kind="Persistent" fieldName="_proveedoresdirecciones" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="209d8996-dbaa-4552-acd7-0fdfa46cc9dc">
+          <NavigationalProperty Id="8b0f8757-2921-4e54-bad6-ec7d121160dc" name="Proveedorescontactos" type="IList&lt;Proveedorescontacto&gt;" label="Proveedorescontactos : IList&lt;Proveedorescontacto&gt;" nullable="true" kind="Persistent" fieldName="_proveedorescontactos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="3603802d-5fd8-453f-9727-bc9c803a43dc">
+          <NavigationalProperty Id="50980712-0e81-4dd7-9bd2-49f0ca8d2cbe" name="Compras" type="IList&lt;Compra&gt;" label="Compras : IList&lt;Compra&gt;" nullable="true" kind="Persistent" fieldName="_compras" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="74d1b71f-fd61-4acc-8b13-8da390e78be3" name="Producto" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="30f34a72-9bb9-489e-b96f-ee039b1db6d8" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="55435077-101f-4810-b520-1b17a8bd6576" name="Cantidad" type="Int32" label="Cantidad : Int32" kind="Persistent" fieldName="_cantidad" />
+      <Property Id="9c85fbb5-d038-43e4-8e76-f5b8697fa1da" name="Marcas_Id" type="Int32" label="Marcas_Id : Int32" kind="Persistent" fieldName="_marcas_Id" />
+      <Property Id="f3257206-d961-409c-9add-9331843028ca" name="Minimo" type="Int32" label="Minimo : Int32" kind="Persistent" fieldName="_minimo" />
+      <Property Id="4630a58a-088a-40fd-b5f2-caa7242a616e" name="Precio" type="Decimal" label="Precio : Decimal" kind="Persistent" fieldName="_precio" />
+      <Property Id="e5bf7a06-ad3d-4e4e-95a3-9dbe991b00a6" name="Producto1" label="Producto1 : String" kind="Persistent" fieldName="_producto1" />
+      <AssociationTargets>
+        <Association Id="b8e653a5-11d9-447e-bf1a-4d3c964f2a85" SourceMultiplicity="One" name="ProductoHasMarca">
+          <DomainClassMoniker name="/InvEntitiesModel/Marca" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="c7781542-ad2a-4baa-922b-8f855c72996b">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Marca/Productos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="39554648-3af9-4dc8-b966-00dbb33c98c5">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Producto/Marca" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="d64a0b16-a167-4117-ba6b-a15c31d927ef">
+          <NavigationalProperty Id="b368c2ff-f091-47bb-8744-25f4a55da053" name="Ventasdetalles" type="IList&lt;Ventasdetalle&gt;" label="Ventasdetalles : IList&lt;Ventasdetalle&gt;" nullable="true" kind="Persistent" fieldName="_ventasdetalles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="4f664f24-935f-415e-8a0d-336fccf4415a">
+          <NavigationalProperty Id="cdde6951-06ef-43c9-a118-517be84dff1e" name="Marca" type="Marca" label="Marca : Marca" nullable="true" kind="Persistent" fieldName="_marca" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="0386729d-31d6-46aa-8630-ea06491703dd">
+          <NavigationalProperty Id="b630d0ba-d3b5-4f0f-aa94-5be8a45ea4d9" name="Cotizacionesdetalles" type="IList&lt;Cotizacionesdetalle&gt;" label="Cotizacionesdetalles : IList&lt;Cotizacionesdetalle&gt;" nullable="true" kind="Persistent" fieldName="_cotizacionesdetalles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="2b4ff8fc-6aca-4ba4-88d6-54cf4f96bcd4">
+          <NavigationalProperty Id="93899ac1-4154-460f-b6b4-01dc36bb0411" name="Comprasdetalles" type="IList&lt;Comprasdetalle&gt;" label="Comprasdetalles : IList&lt;Comprasdetalle&gt;" nullable="true" kind="Persistent" fieldName="_comprasdetalles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="56f591c2-6b53-4485-a330-5811ca97b568" name="Marca" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="903db806-f5e9-4930-a3c8-6f0371ba9ec7" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="d993cd81-8ba1-4d58-b530-fffd3cbeac86" name="Marca1" label="Marca1 : String" kind="Persistent" fieldName="_marca1" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="54f1d83f-8330-4a87-85a3-e0d1fbf6e486">
+          <NavigationalProperty Id="c0ebb2d8-73af-4d08-8c8a-a7df92c9e1ea" name="Productos" type="IList&lt;Producto&gt;" label="Productos : IList&lt;Producto&gt;" nullable="true" kind="Persistent" fieldName="_productos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="1726d6e2-2d45-4364-b22a-3fd334788bb6" name="Cotizacionesdetalle" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="f9b59f9c-fbc3-4648-82f4-1b9a35b91f9f" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="d3fbb368-99ba-4c66-a062-287ebb5b71c3" name="Cantidad" type="Int32" label="Cantidad : Int32" kind="Persistent" fieldName="_cantidad" />
+      <Property Id="b9d0895a-298b-4ec5-8ed4-c33ac664eadf" name="Cotizaciones_Id" type="Int32" label="Cotizaciones_Id : Int32" kind="Persistent" fieldName="_cotizaciones_Id" />
+      <Property Id="653419fa-758c-413d-b0f5-2964ccbec3ad" name="Pci" type="Decimal" label="Pci : Decimal" kind="Persistent" fieldName="_pci" />
+      <Property Id="6ed7dcc3-2df5-4ea5-b724-161c1d5e5258" name="Productos_Id" type="Int32" label="Productos_Id : Int32" kind="Persistent" fieldName="_productos_Id" />
+      <Property Id="be5880a5-56e4-4d5a-b116-c3bdf0521f61" name="Psi" type="Decimal" label="Psi : Decimal" kind="Persistent" fieldName="_psi" />
+      <Property Id="23b4818d-6a0f-427d-96a0-a7611cf3eef4" name="Tci" type="Decimal" label="Tci : Decimal" kind="Persistent" fieldName="_tci" />
+      <Property Id="d604869b-1320-4fd7-8122-545d72697d8d" name="Tsi" type="Decimal" label="Tsi : Decimal" kind="Persistent" fieldName="_tsi" />
+      <AssociationTargets>
+        <Association Id="e6250845-1797-4c2a-8dcf-8ffa3a6bfcd9" SourceMultiplicity="One" name="CotizacionesdetalleHasCotizacione">
+          <DomainClassMoniker name="/InvEntitiesModel/Cotizacione" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="0d01eb0f-cc4a-481e-a7aa-8a80a0d37bac">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cotizacione/Cotizacionesdetalles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="7656d85f-39d2-4bec-aaa5-6ff112864722">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cotizacionesdetalle/Cotizacione" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="a7e6a946-d58b-4daf-ac4a-c74ee33d7125" SourceMultiplicity="One" name="CotizacionesdetalleHasProducto">
+          <DomainClassMoniker name="/InvEntitiesModel/Producto" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="c006e2c1-355a-4ab8-84ee-a692a67736d1">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Producto/Cotizacionesdetalles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="a561e597-e8c2-4ae4-b78f-81b840365591">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cotizacionesdetalle/Producto" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="7d4573d4-442b-440a-b460-e259f93f486e">
+          <NavigationalProperty Id="9beaa14a-ec91-46e2-b736-5182fb198273" name="Cotizacione" type="Cotizacione" label="Cotizacione : Cotizacione" nullable="true" kind="Persistent" fieldName="_cotizacione" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="35313825-a431-463c-9665-f0e158e1b714">
+          <NavigationalProperty Id="624e65e8-8a6d-496b-a3cc-0f59a703ddd9" name="Producto" type="Producto" label="Producto : Producto" nullable="true" kind="Persistent" fieldName="_producto" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="0ccf0a26-b1b6-41d9-9031-355762268459" name="Cotizacione" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="d23063ee-e557-4f77-a5b0-f665387fe7c4" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="a3c7f48b-88d7-48a9-a8a6-cdef64bd1fe8" name="Clientes_Id" type="Int32" label="Clientes_Id : Int32" kind="Persistent" fieldName="_clientes_Id" />
+      <Property Id="b86d406d-6f82-49fd-8a39-ba66a8babc2f" name="Codigo" label="Codigo : String" kind="Persistent" fieldName="_codigo" />
+      <Property Id="aebb0f49-83f6-4e97-adef-b8df8e3be032" name="Fecha" type="DateTime" label="Fecha : DateTime" kind="Persistent" fieldName="_fecha" />
+      <AssociationTargets>
+        <Association Id="19297935-dce8-411d-8c2b-64be5d99424c" SourceMultiplicity="One" name="CotizacioneHasCliente">
+          <DomainClassMoniker name="/InvEntitiesModel/Cliente" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="f7ee078d-706b-4dd8-a5e0-9c0221cd5cc5">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cliente/Cotizaciones" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="643b338c-59c2-4ed8-b0d8-9850c4e26808">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cotizacione/Cliente" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="a7c1eb24-6cf3-4489-90b8-7b4d2c1b9df1">
+          <NavigationalProperty Id="80ba2c15-ff34-41db-bc65-5e664705048c" name="Cotizacionesdetalles" type="IList&lt;Cotizacionesdetalle&gt;" label="Cotizacionesdetalles : IList&lt;Cotizacionesdetalle&gt;" nullable="true" kind="Persistent" fieldName="_cotizacionesdetalles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c4723425-f90a-433e-8fbe-0aa3692d5e17">
+          <NavigationalProperty Id="65f4bffb-d3cc-4a89-a048-6791a961ddf5" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="ebff4f83-b09b-4ff5-8bb7-38e7349b0289" name="Costo" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="40dcc9de-a7b4-4668-805f-26b1a7e4a439" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="8678390e-2588-4fd9-9bed-bcb9dc248467" name="ComprasDetalles_Id" type="Int32" label="ComprasDetalles_Id : Int32" kind="Persistent" fieldName="_comprasDetalles_Id" />
+      <Property Id="3ac8e19b-0a52-4073-ba84-fd9864ec151a" name="Fecha" type="DateTime" label="Fecha : DateTime" kind="Persistent" fieldName="_fecha" />
+      <Property Id="49d2f6b0-478b-468e-99a6-d5c7cdf03220" name="VentasDetalles_Id" type="Int32" label="VentasDetalles_Id : Int32" kind="Persistent" fieldName="_ventasDetalles_Id" />
+      <AssociationTargets>
+        <Association Id="7b93674e-1281-4577-b762-0dcb15789dbe" SourceMultiplicity="One" name="CostoHasComprasdetalle">
+          <DomainClassMoniker name="/InvEntitiesModel/Comprasdetalle" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="281b947a-436e-4090-988d-816816e589c0">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Comprasdetalle/Costos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="7d783d50-72fb-4b50-9db0-083a663e7e7f">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Costo/Comprasdetalle" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="d93d23a4-0bbc-4116-ace0-a740bd9fe97d" SourceMultiplicity="One" name="CostoHasVentasdetalle">
+          <DomainClassMoniker name="/InvEntitiesModel/Ventasdetalle" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="f1f6a481-bdab-4088-a2d0-a15058940770">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Ventasdetalle/Costos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="bc0e437b-e4bc-44ab-b65d-9bbdd1f40c1d">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Costo/Ventasdetalle" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="f22f78e6-7a3f-4d87-926d-8f562e604441">
+          <NavigationalProperty Id="f495ffaf-e99f-420d-9e02-576b28e05f84" name="Comprasdetalle" type="Comprasdetalle" label="Comprasdetalle : Comprasdetalle" nullable="true" kind="Persistent" fieldName="_comprasdetalle" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="11bd4cf2-197d-4ed6-9d52-f1be99ca1c1b">
+          <NavigationalProperty Id="adac3d68-d5e8-4746-8a83-1458548f5e2a" name="Ventasdetalle" type="Ventasdetalle" label="Ventasdetalle : Ventasdetalle" nullable="true" kind="Persistent" fieldName="_ventasdetalle" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="901dd92f-273d-41d8-a40e-fdd6f079ec1c" name="Comprasdetalle" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="8c7fd92d-949a-494e-980c-a87e6adcdd32" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="eeb9cc9b-1b09-4c49-a30c-2968066fc2ca" name="Cantidad" type="Int32" label="Cantidad : Int32" kind="Persistent" fieldName="_cantidad" />
+      <Property Id="f1d3f054-4962-47f1-8fb0-d166aa1e0c91" name="Compras_Id" type="Int32" label="Compras_Id : Int32" kind="Persistent" fieldName="_compras_Id" />
+      <Property Id="2d03b621-12df-4471-a47c-e435a8a66343" name="Existencia" type="Int32" label="Existencia : Int32" kind="Persistent" fieldName="_existencia" />
+      <Property Id="1a640c5b-3671-404f-98c1-edc09b7527bd" name="Pci" type="Decimal" label="Pci : Decimal" kind="Persistent" fieldName="_pci" />
+      <Property Id="03d4ab21-0ae7-4ddb-a8f8-c8537ab6d79e" name="Productos_Id" type="Int32" label="Productos_Id : Int32" kind="Persistent" fieldName="_productos_Id" />
+      <Property Id="bcd475ad-e7d0-43e6-a406-299fb2014ab0" name="Psi" type="Decimal" label="Psi : Decimal" kind="Persistent" fieldName="_psi" />
+      <Property Id="3c6747d6-d349-4658-bdfa-4642588e32c9" name="Tci" type="Decimal" label="Tci : Decimal" kind="Persistent" fieldName="_tci" />
+      <Property Id="294ce49d-d894-4816-99fa-30a8b4ef10f2" name="Tsi" type="Decimal" label="Tsi : Decimal" kind="Persistent" fieldName="_tsi" />
+      <AssociationTargets>
+        <Association Id="1e9f9c83-2593-4f08-a3ae-1f647055fce1" SourceMultiplicity="One" name="ComprasdetalleHasCompra">
+          <DomainClassMoniker name="/InvEntitiesModel/Compra" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="bce15494-2a7e-44ec-8818-86273b6e656f">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Compra/Comprasdetalles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="e96fc786-79d2-4f9d-8857-0ada413527f2">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Comprasdetalle/Compra" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="88f0829c-3405-4d19-9901-31f5ffdf6566" SourceMultiplicity="One" name="ComprasdetalleHasProducto">
+          <DomainClassMoniker name="/InvEntitiesModel/Producto" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="52470e50-e3aa-4977-a65e-6bf60bd5a786">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Producto/Comprasdetalles" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="847fe2e1-5284-4413-9fdb-896203825d87">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Comprasdetalle/Producto" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="d4a22cca-34c7-44f0-bdb4-470e1446b749">
+          <NavigationalProperty Id="cae256c8-a14c-4900-abae-659954860161" name="Costos" type="IList&lt;Costo&gt;" label="Costos : IList&lt;Costo&gt;" nullable="true" kind="Persistent" fieldName="_costos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="e576253f-9221-4c8e-922d-cdc0d74d0d61">
+          <NavigationalProperty Id="7464a084-4ddb-459d-ab96-a70d4f36a04e" name="Compra" type="Compra" label="Compra : Compra" nullable="true" kind="Persistent" fieldName="_compra" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="269a79b2-99e1-49bb-8aa7-e566977515e4">
+          <NavigationalProperty Id="eb966cc6-58e2-4433-9f70-afe0feb401e5" name="Producto" type="Producto" label="Producto : Producto" nullable="true" kind="Persistent" fieldName="_producto" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="ecdd56cc-b878-4a15-b817-6126fec9e7a6" name="Compra" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="e9d8d89b-24d1-4e56-abc4-c827b1cefa01" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="2a005645-3365-4672-a454-fcc917533794" name="Fecha" type="DateTime" label="Fecha : DateTime" kind="Persistent" fieldName="_fecha" />
+      <Property Id="71508b1f-704c-4c12-9c4d-862dd5c26a28" name="NDoc" label="NDoc : String" kind="Persistent" fieldName="_nDoc" />
+      <Property Id="e91254fb-a99b-4670-8b3b-3229dbb8e7d2" name="Pagado" type="Int32" label="Pagado : Int32" kind="Persistent" fieldName="_pagado" />
+      <Property Id="fa30f0df-b653-46a9-9405-16616ffdb0f1" name="Proveedores_Id" type="Int32" label="Proveedores_Id : Int32" kind="Persistent" fieldName="_proveedores_Id" />
+      <AssociationTargets>
+        <Association Id="8e8d5668-86d9-48e7-b1e3-9cb3bf856918" SourceMultiplicity="One" name="CompraHasProveedore">
+          <DomainClassMoniker name="/InvEntitiesModel/Proveedore" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="3b12f121-b25a-406c-9072-3159ab020b58">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Proveedore/Compras" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="e7066784-c26f-436a-8b9b-9817ca02b2e9">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Compra/Proveedore" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="0e4cdd6b-151c-4ae5-9b65-8d54170dcc77">
+          <NavigationalProperty Id="94aa465d-b0b9-48dc-9a5f-8c8504f19099" name="Comprasdetalles" type="IList&lt;Comprasdetalle&gt;" label="Comprasdetalles : IList&lt;Comprasdetalle&gt;" nullable="true" kind="Persistent" fieldName="_comprasdetalles" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="b5551db0-8db2-459a-9a62-9cf3711c81e2">
+          <NavigationalProperty Id="0f71de7f-eb27-4b31-8f2b-c6a0790968bd" name="Proveedore" type="Proveedore" label="Proveedore : Proveedore" nullable="true" kind="Persistent" fieldName="_proveedore" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="494a0abe-c398-49d9-a74d-75d6489c7a2d" name="Clientestelefono" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="3b48a144-4370-4c44-a7d0-fa90e6762f54" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="b680278a-0fc8-4b47-ba33-bf75a98ebe6f" name="Clientes_Id" type="Int32" label="Clientes_Id : Int32" kind="Persistent" fieldName="_clientes_Id" />
+      <Property Id="dfe57094-e46a-4efb-8fdd-5fa46e55fbd7" name="Ext" label="Ext : String" kind="Persistent" fieldName="_ext" />
+      <Property Id="7ebcbd2f-c649-4548-b68e-5ab0f65d7240" name="Telefono" label="Telefono : String" kind="Persistent" fieldName="_telefono" />
+      <AssociationTargets>
+        <Association Id="85dd19ea-0786-4138-9e67-b31f46b247ec" SourceMultiplicity="One" name="ClientestelefonoHasCliente">
+          <DomainClassMoniker name="/InvEntitiesModel/Cliente" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="e8e11042-6f96-4e70-9b16-dc2e73332f4b">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cliente/Clientestelefonos" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="205263f2-3cb6-4743-b1ac-c60e9cf6ea3d">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Clientestelefono/Cliente" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="03693d1a-6342-442a-997c-8795fb1f2058">
+          <NavigationalProperty Id="37599160-4d3d-47ad-97b1-25304985d015" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="3b3977d5-e1c7-466e-92cb-3c060cbc59a4" name="Clientesdireccione" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="2a9ef757-3857-443b-b47f-d2e7a45a1c11" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="d99cb864-98c3-44a8-ac34-b6e5e8b0f446" name="Clientes_Id" type="Int32" label="Clientes_Id : Int32" kind="Persistent" fieldName="_clientes_Id" />
+      <Property Id="49673eaf-7fad-4d19-9b37-7fe9d0544bf2" name="Direccion" label="Direccion : String" kind="Persistent" fieldName="_direccion" />
+      <AssociationTargets>
+        <Association Id="849d3416-95ba-45ac-9a2f-0aac07a260b9" SourceMultiplicity="One" name="ClientesdireccioneHasCliente">
+          <DomainClassMoniker name="/InvEntitiesModel/Cliente" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="48f4d542-5883-4fc8-8c78-019ec3f1b7ba">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Cliente/Clientesdirecciones" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="9dc591ee-89fc-4b09-b6ae-9de17774bb6a">
+              <NavigationalPropertyMoniker name="/InvEntitiesModel/Clientesdireccione/Cliente" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="e0dd2cd2-4614-45fb-8803-4447b510a9a9">
+          <NavigationalProperty Id="d482044a-2f7d-4810-8cd2-62f9a5480bce" name="Cliente" type="Cliente" label="Cliente : Cliente" nullable="true" kind="Persistent" fieldName="_cliente" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="39c20a4e-aa8f-4258-b673-9dcbfaf07700" name="Cliente" namespace="InvDataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
+      <Property Id="2c16d5d7-4383-424b-8769-c14fee27e78b" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="b3e9ff4f-16b0-437a-9d24-7ceacdff0e06" name="Cliente1" label="Cliente1 : String" kind="Persistent" fieldName="_cliente1" />
+      <Property Id="0426fe42-41b9-4212-ac5c-5d3cd8abe19e" name="Empresa" type="Int32" label="Empresa : Int32" kind="Persistent" fieldName="_empresa" />
+      <Property Id="024c1281-ac69-48db-93bf-f807875eed17" name="Nit" label="Nit : String" kind="Persistent" fieldName="_nit" />
+      <Property Id="43e18954-4d6e-457a-bf16-393eca4ba93b" name="Nrc" label="Nrc : String" kind="Persistent" fieldName="_nrc" />
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="4d4fd1b7-54ce-4e54-b4ea-078a695fc4f6">
+          <NavigationalProperty Id="8def9a3d-535a-4eee-8f25-8fa3653c4b31" name="Ventas" type="IList&lt;Venta&gt;" label="Ventas : IList&lt;Venta&gt;" nullable="true" kind="Persistent" fieldName="_ventas" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="0410e4ec-922d-46ca-a800-1289f8fbf0d7">
+          <NavigationalProperty Id="e111447f-db76-4bde-922c-bafce88eb392" name="Cotizaciones" type="IList&lt;Cotizacione&gt;" label="Cotizaciones : IList&lt;Cotizacione&gt;" nullable="true" kind="Persistent" fieldName="_cotizaciones" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="1a5cbe45-bcf3-4276-8ba9-739fc981dbee">
+          <NavigationalProperty Id="4828a6e8-7c80-4f85-9961-57e053a564f1" name="Clientestelefonos" type="IList&lt;Clientestelefono&gt;" label="Clientestelefonos : IList&lt;Clientestelefono&gt;" nullable="true" kind="Persistent" fieldName="_clientestelefonos" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="faf15e1d-6125-4313-9549-4023fbd73bb1">
+          <NavigationalProperty Id="fd9dd41d-828c-4e19-8372-69a3de5c13bf" name="Clientesdirecciones" type="IList&lt;Clientesdireccione&gt;" label="Clientesdirecciones : IList&lt;Clientesdireccione&gt;" nullable="true" kind="Persistent" fieldName="_clientesdirecciones" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+  </Types>
+  <domainContext>
+    <domainModelHasDomainContext Id="23b3204a-a7cd-4909-864d-27b7564a64c8">
+      <domainContainer name="InvEntitiesModel" namespace="InvDataAccess" showPropertiesCompartment="true">
+        <entitySetProperty name="Ventasdetalles" namespace="InvDataAccess" type="Ventasdetalle" label="Ventasdetalles : IQueryable&lt;InvDataAccess.Ventasdetalle&gt;" />
+        <entitySetProperty name="Ventas" namespace="InvDataAccess" type="Venta" label="Ventas : IQueryable&lt;InvDataAccess.Venta&gt;" />
+        <entitySetProperty name="Usuarios" namespace="InvDataAccess" type="Usuario" label="Usuarios : IQueryable&lt;InvDataAccess.Usuario&gt;" />
+        <entitySetProperty name="Tipodocumentos" namespace="InvDataAccess" type="Tipodocumento" label="Tipodocumentos : IQueryable&lt;InvDataAccess.Tipodocumento&gt;" />
+        <entitySetProperty name="Proveedoresdirecciones" namespace="InvDataAccess" type="Proveedoresdireccione" label="Proveedoresdirecciones : IQueryable&lt;InvDataAccess.Proveedoresdireccione&gt;" />
+        <entitySetProperty name="Proveedorescontactos" namespace="InvDataAccess" type="Proveedorescontacto" label="Proveedorescontactos : IQueryable&lt;InvDataAccess.Proveedorescontacto&gt;" />
+        <entitySetProperty name="Proveedores" namespace="InvDataAccess" type="Proveedore" label="Proveedores : IQueryable&lt;InvDataAccess.Proveedore&gt;" />
+        <entitySetProperty name="Productos" namespace="InvDataAccess" type="Producto" label="Productos : IQueryable&lt;InvDataAccess.Producto&gt;" />
+        <entitySetProperty name="Marcas" namespace="InvDataAccess" type="Marca" label="Marcas : IQueryable&lt;InvDataAccess.Marca&gt;" />
+        <entitySetProperty name="Cotizacionesdetalles" namespace="InvDataAccess" type="Cotizacionesdetalle" label="Cotizacionesdetalles : IQueryable&lt;InvDataAccess.Cotizacionesdetalle&gt;" />
+        <entitySetProperty name="Cotizaciones" namespace="InvDataAccess" type="Cotizacione" label="Cotizaciones : IQueryable&lt;InvDataAccess.Cotizacione&gt;" />
+        <entitySetProperty name="Costos" namespace="InvDataAccess" type="Costo" label="Costos : IQueryable&lt;InvDataAccess.Costo&gt;" />
+        <entitySetProperty name="Comprasdetalles" namespace="InvDataAccess" type="Comprasdetalle" label="Comprasdetalles : IQueryable&lt;InvDataAccess.Comprasdetalle&gt;" />
+        <entitySetProperty name="Compras" namespace="InvDataAccess" type="Compra" label="Compras : IQueryable&lt;InvDataAccess.Compra&gt;" />
+        <entitySetProperty name="Clientestelefonos" namespace="InvDataAccess" type="Clientestelefono" label="Clientestelefonos : IQueryable&lt;InvDataAccess.Clientestelefono&gt;" />
+        <entitySetProperty name="Clientesdirecciones" namespace="InvDataAccess" type="Clientesdireccione" label="Clientesdirecciones : IQueryable&lt;InvDataAccess.Clientesdireccione&gt;" />
+        <entitySetProperty name="Clientes" namespace="InvDataAccess" type="Cliente" label="Clientes : IQueryable&lt;InvDataAccess.Cliente&gt;" />
+      </domainContainer>
+    </domainModelHasDomainContext>
+  </domainContext>
+</DomainModel>
