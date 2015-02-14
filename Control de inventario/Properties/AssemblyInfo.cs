@@ -7,12 +7,12 @@ using System.Security;
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("Control de inventario")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Control de inventario")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jonathan Moran")]
 [assembly: AssemblyProduct("Control de inventario")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Jonathan Moran")]
 [assembly: AssemblyCulture("")]
 
 // Si establece ComVisible en false, los tipos de este ensamblado no estarán visibles 

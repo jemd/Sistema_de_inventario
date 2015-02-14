@@ -117,41 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="to_do_list_cheked_all" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\to_do_list_cheked_all.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="box_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\box_open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save_money" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save_money.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tag_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tag_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cash_register_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cash_register_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="application_parts" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\application_parts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="total_plan_cost" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\total_plan_cost.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="basket_shopping" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\basket_shopping.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="xfn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\xfn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="card_money" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\card_money.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="manage_sources" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\manage_sources.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="baggage_cart_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\baggage_cart_box.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

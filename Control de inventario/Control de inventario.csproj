@@ -168,6 +168,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="InvRibbon.resx">
+      <DependentUpon>InvRibbon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -176,7 +179,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Control de inventario_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,9 +207,54 @@
       <Name>InvDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tag_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash_register_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basket_shopping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\to_do_list_cheked_all.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\card_money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_parts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manage_sources.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total_plan_cost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xfn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baggage_cart_box.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Control de inventario_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E61D9339E74A3E82C5904AB4BEFBA298D7B414EC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
