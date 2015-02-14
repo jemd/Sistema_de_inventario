@@ -147,6 +147,7 @@
             this.BtnMarcas.Label = "Marcas";
             this.BtnMarcas.Name = "BtnMarcas";
             this.BtnMarcas.ShowImage = true;
+            this.BtnMarcas.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.BtnMarcas_Click);
             // 
             // BtnReporteCosto
             // 
